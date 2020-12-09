@@ -165,7 +165,7 @@ def solve(start,
     while current:  # len openList not 0
 
         if current.is_goal():
-            print(g_score[current])  # minimal distance  between start and goal
+            #print(g_score[current])  # minimal distance  between start and goal
             return reconstract_path(previous_node_map, current)
 
         for candidate_state in current.next_states():
@@ -188,10 +188,16 @@ width=3
 height=3
 board = Board(width=width,height=height)
 board = board.random()
-print(board.can_be_solved())
+print("is this solvable ? 🐉 =",board.can_be_solved())
 board.display()
-print("heuristic 2")
-print(solve(board, board.heuristic2))
-print("heuristic 1")
-solve(board, board.heuristic1)
+print("👾👾 Heuristic 2 👾👾")
+
+if resulth2 := solve(board, board.heuristic2):
+    print("nbr of steps 🤯", len(resulth2))
+    print("\n Steps : ", resulth2)
+
+print("👾👾 Heuristic 1 👾👾")
+if resulth1 := solve(board, board.heuristic1):
+    print("nbr of steps 🤯", len(resulth1))
+    print("\n Steps : ", resulth1)
 
